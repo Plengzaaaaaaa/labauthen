@@ -22,7 +22,9 @@ exports.getProductID = async (req, res) => {
 exports.postProduct = async (req, res) => {
     try {
         const { product_name, product_type, price, unit } = req.body;
+
         const product = new Product({ product_name, product_type, price, unit });
+        
         const savedProduct = await product.save();
         res.status(201).json(savedProduct);
     } catch (err) {
